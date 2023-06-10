@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Pagination\Paginator;
 use App\Repositories\Interface\RepositoryInterface;
 
-class ModelRepository implements RepositoryInterface
+class Repository implements RepositoryInterface
 {
     private $model;
 

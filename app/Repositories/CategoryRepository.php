@@ -4,14 +4,14 @@ namespace App\Repositories;
 
 use App\Models\Category;
 use Illuminate\Contracts\Pagination\Paginator;
-use App\Repositories\BaseRepository\ModelRepository;
+use App\Repositories\BaseRepository\Repository;
 
 /**
  * @method Category|null    findOneBy(array $criteria = [], array $columns = ['*'])
  * @method Paginator        findBy(array $criteria = [], array $orderBy = [], int $itemPerPage = 10, array $columns = ['*'])
  * @method Paginator        findAll(array $orderBy = [], int $itemPerPage = 10, array $columns = ['*'])
  */
-class CategoryRepository extends ModelRepository
+class CategoryRepository extends Repository
 {
     public function __construct()
     {
