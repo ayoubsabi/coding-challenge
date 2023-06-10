@@ -6,7 +6,7 @@
 - Run `./vendor/bin/sail up` to build docker container
 - Access to laravel.test container terminal and run `php artisan migrate --seed`
 
-## Web
+## API REST
 
 - Register endpoint: *POST: api/register*
     - example: `http://127.0.0.1:8000/api/register` payload `{"name": "Ayoub Sabi", "email": "ayoub@mail.com", "password": "Hello108*", "password_confirmation": "Hello108*"}`
