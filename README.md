@@ -2,9 +2,9 @@
 
 - Clone project from this repository
 - Run `composer install`
-- Config .env file
+- Modify .env file if any changes needed
 - Run `./vendor/bin/sail up` to build docker container
-- Access to laravel.test container command line and run `php artisan migrate --seed`
+- Access to laravel.test container terminal and run `php artisan migrate --seed`
 
 ## Web
 
@@ -36,10 +36,10 @@
     - example: `http://127.0.0.1:8000/api/products/1`
 
 - Category list endpoint: *GET: api/categories*
-    - all products example: `http://127.0.0.1:8000/api/categories`
+    - all categories example: `http://127.0.0.1:8000/api/categories`
     - filter by parent example: `http://127.0.0.1:8000/api/categories?parent_id=1`
     - order by name example: `http://127.0.0.1:8000/api/categories?order_by[column]=name&order_by[orientation]=asc`
     
 ## Testing
 
-- To test product creation please run `vendor/bin/phpunit`
+- To test product creation access to laravel.test container terminal run `vendor/bin/phpunit`
