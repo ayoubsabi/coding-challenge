@@ -3,6 +3,7 @@
 namespace App\Repositories\Factory;
 
 use Exception;
+use App\Exceptions\RepositoryFactoryException;
 use App\Repositories\Interface\RepositoryInterface;
 
 class RepositoryFactory
@@ -17,17 +18,15 @@ class RepositoryFactory
      */
     public static function createInstance(string $repositoryClassName): RepositoryInterface
     {
-        throw_if(
-            ! class_exists($repositoryClassName),
-            new Exception(sprintf("%s class not found", $repositoryClassName))
-        );
+        if (!class_exists($repositoryClassName)) {
+            throw RepositoryFactoryException::classNotFound($repositoryClassName);
+        }
 
         $repository = app($repositoryClassName);
 
-        throw_if(
-            ! $repository instanceof RepositoryInterface,
-            new Exception(sprintf("This class is not an instance of %s", RepositoryInterface::class))
-        );
+        if (!$repository instanceof RepositoryInterface) {
+            throw RepositoryFactoryException::invalidRepository($repositoryClassName);
+        }
 
         return $repository;
     }

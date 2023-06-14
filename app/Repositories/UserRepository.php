@@ -15,7 +15,9 @@ class UserRepository extends Repository
 {
     public function __construct()
     {
-        parent::__construct(User::class);
+        parent::__construct(
+            app(User::class)
+        );
     }
 
     /**

@@ -2,10 +2,9 @@
 
 namespace App\Repositories\BaseRepository;
 
-use Exception;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Contracts\Pagination\Paginator;
 use App\Repositories\Interface\RepositoryInterface;
 
@@ -14,22 +13,10 @@ class Repository implements RepositoryInterface
     private $model;
 
     /**
-     * @param string $modelClassName The class name of the model
+     * @param Model $model The instance of the model
      */
-    public function __construct(string $modelClassName)
+    public function __construct(Model $model)
     {
-        throw_if(
-            ! class_exists($modelClassName),
-            new Exception(sprintf("%s class not found", $modelClassName))
-        );
-
-        $model = app($modelClassName);
-
-        throw_if(
-            ! $model instanceof Model,
-            new Exception(sprintf("This class is not an instance of %s", Model::class))
-        );
-
         $this->model = $model;
     }
 
@@ -44,13 +31,13 @@ class Repository implements RepositoryInterface
     }
 
     /**
-     * @method getTableColumns()
+     * @method query()
      *
-     * @return array
+     * @return Builder
      */
-    protected function getTableColumns(): array
+    protected function query(): Builder
     {
-        return Schema::getColumnListing($this->model->getTable());
+        return $this->model->newQuery();
     }
 
     /**
@@ -59,8 +46,7 @@ class Repository implements RepositoryInterface
     public function findOneBy(array $criteria = [], array $columns = ['*']): ?Model
     {
         return $this
-            ->model
-            ->newQuery()
+            ->query()
             ->where(function ($query) use ($criteria) {
                 foreach ($criteria as $column => $value) {
                     $query->where($column, $value);
@@ -75,8 +61,7 @@ class Repository implements RepositoryInterface
     public function findBy(array $criteria = [], array $orderBy = [], int $itemPerPage = 10, array $columns = ['*']): Paginator
     {
         return $this
-            ->model
-            ->newQuery()
+            ->query()
             ->where(function ($query) use ($criteria) {
                 foreach ($criteria as $column => $value) {
                     $query->where($column, $value);

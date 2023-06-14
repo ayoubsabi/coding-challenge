@@ -14,8 +14,10 @@ use App\Repositories\BaseRepository\Repository;
 class CategoryRepository extends Repository
 {
     public function __construct()
-    {
-        parent::__construct(Category::class);
+    {        
+        parent::__construct(
+            app(Category::class)
+        );
     }
 
     /**
