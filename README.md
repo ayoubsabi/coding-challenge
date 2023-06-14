@@ -47,10 +47,10 @@ Make any necessary changes to the .env file to match your local environment sett
 ./vendor/bin/sail up
 ```
 
-5. Migrate and seed the database:
+5. To migrate and seed the database access to laravel.test container terminal and run:
 
 ```bash
-./vendor/bin/sail artisan migrate --seed
+php artisan migrate --seed
 ```
 
 Now you're ready to use the project!
