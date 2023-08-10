@@ -1,6 +1,6 @@
 # Project Name
 
-Avaliance Coding Challenge.
+Laravel Coding Challenge.
 
 ## Table of Contents
 
